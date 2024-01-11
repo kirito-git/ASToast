@@ -97,8 +97,8 @@ public extension UIView {
       - parameter messageColor: Color for mesage text
      */
     public func makeToast(message: String,
-                          backgroundColor: UIColor?,
-                          messageColor: UIColor?) {
+                          backgroundColor: UIColor = .black,
+                          messageColor: UIColor = .white) {
         makeToast(message: message,
                   backgroundColor: backgroundColor,
                   messageColor: messageColor,
@@ -461,10 +461,7 @@ public extension UIView {
 
     fileprivate func createToastView(backgroundColor: UIColor?) -> UIView {
         let toastView = UIView()
-        toastView.autoresizingMask = [UIView.AutoresizingMask.flexibleLeftMargin,
-                                      UIView.AutoresizingMask.flexibleRightMargin,
-                                      UIView.AutoresizingMask.flexibleTopMargin,
-                                      UIView.AutoresizingMask.flexibleBottomMargin]
+        toastView.autoresizingMask = [UIView.AutoresizingMask.flexibleLeftMargin, UIView.AutoresizingMask.flexibleRightMargin, UIView.AutoresizingMask.flexibleTopMargin, UIView.AutoresizingMask.flexibleBottomMargin]
         toastView.layer.cornerRadius = Constants.ToastCornerRadius
         // check if shadow needed
         if Constants.ToastDisplayShadow == true {
@@ -708,10 +705,7 @@ public extension UIView {
         activityView.center = centerPointForPosition(position: position, toastView: activityView)
         activityView.backgroundColor = UIColor.black.withAlphaComponent(Constants.ToastOpacity)
         activityView.alpha = Constants.ToastViewAlpha
-        activityView.autoresizingMask = [UIView.AutoresizingMask.flexibleLeftMargin,
-                                         UIView.AutoresizingMask.flexibleRightMargin,
-                                         UIView.AutoresizingMask.flexibleTopMargin,
-                                         UIView.AutoresizingMask.flexibleBottomMargin]
+        activityView.autoresizingMask = [UIView.AutoresizingMask.flexibleLeftMargin, UIView.AutoresizingMask.flexibleRightMargin, UIView.AutoresizingMask.flexibleTopMargin, UIView.AutoresizingMask.flexibleBottomMargin]
         activityView.layer.cornerRadius = Constants.ToastCornerRadius
 
         if Constants.ToastDisplayShadow {
@@ -778,8 +772,7 @@ public extension UIView {
         if text.responds(to: #selector(NSString.boundingRect(with:options:attributes:context:))) {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineBreakMode = lineBreakMode
-            let attributes = [NSAttributedString.Key.font: font,
-                              NSAttributedString.Key.paragraphStyle: paragraphStyle] as [NSAttributedString.Key: Any]
+            let attributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.paragraphStyle: paragraphStyle] as [NSAttributedString.Key : Any]
             let boundingRect = text.boundingRect(with: constrainedSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attributes, context: nil)
             return CGSize(width: boundingRect.size.width, height: boundingRect.size.height)
         }
